@@ -1,0 +1,5 @@
+export FC=mpif90
+export LIBOPT=/opt
+export MPIDIR=$LIBOPT/mpich2-1.2.1
+export DISLIN=$LIBOPT/dislin-10.2
+export XLIB=/usr/lib64

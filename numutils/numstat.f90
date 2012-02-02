@@ -32,39 +32,39 @@ program numstat
        '  numstat',&
        '',&
        'SYNOPSIS',&
-       '  numstat [ncol] [all/mean/std.dev/min/max/skew/kurt/sum/covar/corr]',&
+       '  numstat [n/ncol] [all/mean/sdev/min/max/skew/kurt/sum/covar/corr]',&
        '',&
        'DESCRIPTION',&
        '  Read an array *X(:) or *Y(:,:) from stdin and return statistical description of this sample',&
        ' ',&
        'OPTIONS',&
-       ' ncol=[1]    -- number of columns in the input data',&
-       ' mean        -- mean of the sample. 1st moment.',&
-       ' std.dev     -- standard deviation of the sample. 2nd moment.',&
-       ' min         -- min of the sample.',&
-       ' max         -- max of the sample.',&
-       ' skew        -- skewness of the sample. 3rd moment.',&
-       ' kurt        -- kurtosis of the sample. 4th moment.',&
-       ' sum         -- sum of the sample.',&
-       ' covar       -- covariance matrix of the ncol samples.',&
-       ' corr        -- correlation matrix of the ncol samples.',&
+       ' ncol/n=[1]-- number of columns in the input data',&
+       ' mean      -- mean of the sample. 1st moment.',&
+       ' sdev      -- standard deviation of the sample. 2nd moment.',&
+       ' min       -- min of the sample.',&
+       ' max       -- max of the sample.',&
+       ' skew      -- skewness of the sample. 3rd moment.',&
+       ' kurt      -- kurtosis of the sample. 4th moment.',&
+       ' sum       -- sum of the sample.',&
+       ' covar     -- covariance matrix of the ncol samples.',&
+       ' corr      -- correlation matrix of the ncol samples.',&
        '  '])
 
   call parse_cmd_help(help_buffer)
-  call parse_cmd_variable(ncol,"NCOL",default=1)
+  call parse_cmd_variable(ncol,"NCOL","N",default=1)
   do i=1,command_argument_count()
      cmd_var=get_cmd_variable(i)
-     if(cmd_var%value=="mean")get_mean=.true.
-     if(cmd_var%value=="std.dev")get_sdev=.true.
-     if(cmd_var%value=="var")get_var=.true.
-     if(cmd_var%value=="skew")get_skew=.true.
-     if(cmd_var%value=="kurt")get_kurt=.true.
-     if(cmd_var%value=="min")get_min=.true.
-     if(cmd_var%value=="max")get_max=.true.
-     if(cmd_var%value=="sum")get_sum=.true.
+     if(cmd_var%value=="mean") get_mean=.true.
+     if(cmd_var%value=="sdev") get_sdev=.true.
+     if(cmd_var%value=="var")  get_var=.true.
+     if(cmd_var%value=="skew") get_skew=.true.
+     if(cmd_var%value=="kurt") get_kurt=.true.
+     if(cmd_var%value=="min")  get_min=.true.
+     if(cmd_var%value=="max")  get_max=.true.
+     if(cmd_var%value=="sum")  get_sum=.true.
      if(cmd_var%value=="covar")get_cov=.true.
-     if(cmd_var%value=="corr")get_corr=.true.
-     if(cmd_var%value=="all")get_all=.true.
+     if(cmd_var%value=="corr") get_corr=.true.
+     if(cmd_var%value=="all")  get_all=.true.
   enddo
 
   if(get_all)then

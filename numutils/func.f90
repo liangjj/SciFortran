@@ -40,7 +40,7 @@ program func
         read(cmd_var%value,*)buffer
      enddo
   else
-     call abort("usage: func f(x)")
+     call abort("usage: cat ...|func f(x) OR func f(x) < ...")
   endif
   !
   array=init_list()

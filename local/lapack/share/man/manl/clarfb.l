@@ -1,0 +1,120 @@
+.TH  CLARFB 1 "April 2011" " LAPACK auxiliary routine (version 3.3.1) " " LAPACK auxiliary routine (version 3.3.1) " 
+.SH NAME
+LAPACK-3 - applies a complex block reflector H or its transpose H**H to a complex M-by-N matrix C, from either the left or the right
+.SH SYNOPSIS
+.TP 19
+SUBROUTINE CLARFB(
+SIDE, TRANS, DIRECT, STOREV, M, N, K, V, LDV,
+T, LDT, C, LDC, WORK, LDWORK )
+.TP 19
+.ti +4
+IMPLICIT
+NONE
+.TP 19
+.ti +4
+CHARACTER
+DIRECT, SIDE, STOREV, TRANS
+.TP 19
+.ti +4
+INTEGER
+K, LDC, LDT, LDV, LDWORK, M, N
+.TP 19
+.ti +4
+COMPLEX
+C( LDC, * ), T( LDT, * ), V( LDV, * ),
+WORK( LDWORK, * )
+.SH PURPOSE
+CLARFB applies a complex block reflector H or its transpose H**H to a
+complex M-by-N matrix C, from either the left or the right.
+.SH ARGUMENTS
+.TP 8
+ SIDE    (input) CHARACTER*1
+ = \(aqL\(aq: apply H or H**H from the Left
+.br
+ = \(aqR\(aq: apply H or H**H from the Right
+.TP 8
+ TRANS   (input) CHARACTER*1
+.br
+ = \(aqN\(aq: apply H (No transpose)
+.br
+ = \(aqC\(aq: apply H**H (Conjugate transpose)
+.TP 8
+ DIRECT  (input) CHARACTER*1
+ Indicates how H is formed from a product of elementary
+ reflectors
+ = \(aqF\(aq: H = H(1) H(2) . . . H(k) (Forward)
+.br
+ = \(aqB\(aq: H = H(k) . . . H(2) H(1) (Backward)
+.TP 8
+ STOREV  (input) CHARACTER*1
+ Indicates how the vectors which define the elementary
+ reflectors are stored:
+.br
+ = \(aqC\(aq: Columnwise
+.br
+ = \(aqR\(aq: Rowwise
+.TP 8
+ M       (input) INTEGER
+ The number of rows of the matrix C.
+.TP 8
+ N       (input) INTEGER
+ The number of columns of the matrix C.
+.TP 8
+ K       (input) INTEGER
+ The order of the matrix T (= the number of elementary
+ reflectors whose product defines the block reflector).
+.TP 8
+ V       (input) COMPLEX array, dimension
+ (LDV,K) if STOREV = \(aqC\(aq
+ (LDV,M) if STOREV = \(aqR\(aq and SIDE = \(aqL\(aq
+ (LDV,N) if STOREV = \(aqR\(aq and SIDE = \(aqR\(aq
+ The matrix V. See Further Details.
+ LDV     (input) INTEGER
+ The leading dimension of the array V.
+ If STOREV = \(aqC\(aq and SIDE = \(aqL\(aq, LDV >= max(1,M);
+ if STOREV = \(aqC\(aq and SIDE = \(aqR\(aq, LDV >= max(1,N);
+ if STOREV = \(aqR\(aq, LDV >= K.
+.TP 8
+ T       (input) COMPLEX array, dimension (LDT,K)
+ The triangular K-by-K matrix T in the representation of the
+ block reflector.
+.TP 8
+ LDT     (input) INTEGER
+ The leading dimension of the array T. LDT >= K.
+.TP 8
+ C       (input/output) COMPLEX array, dimension (LDC,N)
+ On entry, the M-by-N matrix C.
+ On exit, C is overwritten by H*C or H**H*C or C*H or C*H**H.
+.TP 8
+ LDC     (input) INTEGER
+ The leading dimension of the array C. LDC >= max(1,M).
+.TP 8
+ WORK    (workspace) COMPLEX array, dimension (LDWORK,K)
+.TP 8
+ LDWORK  (input) INTEGER
+ The leading dimension of the array WORK.
+ If SIDE = \(aqL\(aq, LDWORK >= max(1,N);
+ if SIDE = \(aqR\(aq, LDWORK >= max(1,M).
+.SH FURTHER DETAILS
+ The shape of the matrix V and the storage of the vectors which define
+ the H(i) is best illustrated by the following example with n = 5 and
+ k = 3. The elements equal to 1 are not stored; the corresponding
+ array elements are modified but restored on exit. The rest of the
+ array is not used.
+.br
+ DIRECT = \(aqF\(aq and STOREV = \(aqC\(aq:         DIRECT = \(aqF\(aq and STOREV = \(aqR\(aq:
+              V = (  1       )                 V = (  1 v1 v1 v1 v1 )
+                  ( v1  1    )                     (     1 v2 v2 v2 )
+                  ( v1 v2  1 )                     (        1 v3 v3 )
+                  ( v1 v2 v3 )
+.br
+                  ( v1 v2 v3 )
+.br
+ DIRECT = \(aqB\(aq and STOREV = \(aqC\(aq:         DIRECT = \(aqB\(aq and STOREV = \(aqR\(aq:
+              V = ( v1 v2 v3 )                 V = ( v1 v1  1       )
+                  ( v1 v2 v3 )                     ( v2 v2 v2  1    )
+                  (  1 v2 v3 )                     ( v3 v3 v3 v3  1 )
+                  (     1 v3 )
+.br
+                  (        1 )
+.br

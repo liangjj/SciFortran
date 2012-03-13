@@ -1,11 +1,9 @@
-!  include "list/d_ordered_list.f90"
 program kdensity
-  USE FGSL
+  USE STATISTICS
   USE D_ORDERED_LIST
   USE COMMON_VARS
   USE TOOLS
   implicit none
-  integer(fgsl_int)    :: status
   !
   integer              :: i,L,N,pos,pos1
   real(8)              :: h,shift=2.d0
@@ -82,8 +80,8 @@ program kdensity
   call dump_list(array,data)
 
   if(set_h)then
-     h   = fgsl_stats_sd(data,1_fgsl_size_t,L*1_fgsl_size_t)
-     h   = (4.d0/3.d0/real(L,8))**(1.d0/5.d0)*h !Silverman's rule of thumb.
+     h = get_sd(data)
+     h = (4.d0/3.d0/real(L,8))**(1.d0/5.d0)*h !Silverman's rule of thumb.
   endif
 
   a = minval(data) ; b = maxval(data)

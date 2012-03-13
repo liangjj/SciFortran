@@ -8,15 +8,15 @@ program numstat
   type(d_linked_list),allocatable :: array(:)
   integer                         :: ncol=1
   logical                         :: get_all=.false.
-  logical                         :: get_mean=.false.
-  logical                         :: get_sdev=.false.
-  logical                         :: get_var=.false.
-  logical                         :: get_skew=.false.
-  logical                         :: get_kurt=.false.
-  logical                         :: get_min=.false.,get_max=.false.
-  logical                         :: get_minloc=.false.,get_maxloc=.false.
-  logical                         :: get_sum=.false.
-  logical                         :: get_cov=.false.,get_corr=.false.
+  logical                         :: imean=.false.
+  logical                         :: isdev=.false.
+  logical                         :: ivar=.false.
+  logical                         :: iskew=.false.
+  logical                         :: ikurt=.false.
+  logical                         :: imin=.false.,imax=.false.
+  logical                         :: iminloc=.false.,imaxloc=.false.
+  logical                         :: isum=.false.
+  logical                         :: icov=.false.,icorr=.false.
   real(8),allocatable             :: data_mean(:)
   real(8),allocatable             :: data_sdev(:)
   real(8),allocatable             :: data_var(:)
@@ -58,34 +58,34 @@ program numstat
   call parse_cmd_variable(ncol,"NCOL","N",default=1)
   do i=1,command_argument_count()
      cmd_var=get_cmd_variable(i)
-     if(cmd_var%value=="mean") get_mean=.true.
-     if(cmd_var%value=="sdev") get_sdev=.true.
-     if(cmd_var%value=="var")  get_var=.true.
-     if(cmd_var%value=="skew") get_skew=.true.
-     if(cmd_var%value=="kurt") get_kurt=.true.
-     if(cmd_var%value=="min")  get_min=.true.
-     if(cmd_var%value=="max")  get_max=.true.
-     if(cmd_var%value=="minloc")get_minloc=.true.
-     if(cmd_var%value=="maxloc")get_maxloc=.true.
-     if(cmd_var%value=="sum")  get_sum=.true.
-     if(cmd_var%value=="covar")get_cov=.true.
-     if(cmd_var%value=="corr") get_corr=.true.
+     if(cmd_var%value=="mean") imean=.true.
+     if(cmd_var%value=="sdev") isdev=.true.
+     if(cmd_var%value=="var")  ivar=.true.
+     if(cmd_var%value=="skew") iskew=.true.
+     if(cmd_var%value=="kurt") ikurt=.true.
+     if(cmd_var%value=="min")  imin=.true.
+     if(cmd_var%value=="max")  imax=.true.
+     if(cmd_var%value=="minloc")iminloc=.true.
+     if(cmd_var%value=="maxloc")imaxloc=.true.
+     if(cmd_var%value=="sum")  isum=.true.
+     if(cmd_var%value=="covar")icov=.true.
+     if(cmd_var%value=="corr") icorr=.true.
      if(cmd_var%value=="all")  get_all=.true.
   enddo
 
   if(get_all)then
-     get_mean=.true.
-     get_sdev=.true.
-     get_var=.true.
-     get_skew=.true.
-     get_kurt=.true.
-     get_min=.true.
-     get_max=.true.
-     get_minloc=.true.
-     get_maxloc=.true.
-     get_sum=.true.
-     get_cov=.true.
-     get_corr=.true.
+     imean=.true.
+     isdev=.true.
+     ivar=.true.
+     iskew=.true.
+     ikurt=.true.
+     imin=.true.
+     imax=.true.
+     iminloc=.true.
+     imaxloc=.true.
+     isum=.true.
+     icov=.true.
+     icorr=.true.
   endif
 
   allocate(array(ncol),y(ncol))
@@ -129,24 +129,24 @@ program numstat
      data_sum(icol)=sum(data(icol,:))
   enddo
 
-  if(get_mean)write(*,"(A8,100f24.12)")"mean:",(data_mean(i),i=1,ncol)
-  if(get_sdev)write(*,"(A8,100f24.12)")"std.dev:",(data_sdev(i),i=1,ncol)
-  if(get_var)write(*,"(A8,100f24.12)")"var:",(data_var(i),i=1,ncol)
-  if(get_skew)write(*,"(A8,100f24.12)")"skew:",(data_skew(i),i=1,ncol)
-  if(get_kurt)write(*,"(A8,100f24.12)")"kurt:",(data_kurt(i),i=1,ncol)
-  if(get_min)write(*,"(A8,100f24.12)")"min:",(data_min(i),i=1,ncol)
-  if(get_max)write(*,"(A8,100f24.12)")"max:",(data_max(i),i=1,ncol)
-  if(get_minloc)write(*,"(A8,100I12)")"minloc:",(data_minloc(i),i=1,ncol)
-  if(get_maxloc)write(*,"(A8,100I12)")"maxloc:",(data_maxloc(i),i=1,ncol)
-  if(get_sum)write(*,"(A8,100f24.12)")"sum:",(data_sum(i),i=1,ncol)
+  if(imean)write(*,"(A8,100f24.12)")"mean:",(data_mean(i),i=1,ncol)
+  if(isdev)write(*,"(A8,100f24.12)")"std.dev:",(data_sdev(i),i=1,ncol)
+  if(ivar)write(*,"(A8,100f24.12)")"var:",(data_var(i),i=1,ncol)
+  if(iskew)write(*,"(A8,100f24.12)")"skew:",(data_skew(i),i=1,ncol)
+  if(ikurt)write(*,"(A8,100f24.12)")"kurt:",(data_kurt(i),i=1,ncol)
+  if(imin)write(*,"(A8,100f24.12)")"min:",(data_min(i),i=1,ncol)
+  if(imax)write(*,"(A8,100f24.12)")"max:",(data_max(i),i=1,ncol)
+  if(iminloc)write(*,"(A8,100I12)")"minloc:",(data_minloc(i),i=1,ncol)
+  if(imaxloc)write(*,"(A8,100I12)")"maxloc:",(data_maxloc(i),i=1,ncol)
+  if(isum)write(*,"(A8,100f24.12)")"sum:",(data_sum(i),i=1,ncol)
   if(ncol>1)then
      data_covariance = get_covariance(data,data_mean)
-     if(get_cov)then
+     if(icov)then
         do i=1,ncol
            write(*,"(A8,100f24.12)")"cov_ij:",(data_covariance(i,j),j=1,ncol)
         enddo
      endif
-     if(get_corr)then
+     if(icorr)then
         do i=1,ncol
            do j=1,ncol
               data_covariance(i,j)=data_covariance(i,j)/(data_sdev(i)*data_sdev(j))

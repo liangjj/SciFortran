@@ -1,4 +1,0 @@
-make sgesvmg
-make dgesvmg
-make cgesvmg
-make zgesvmg

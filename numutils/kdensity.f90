@@ -10,6 +10,7 @@ program kdensity
   real(8)              :: y,a,b,dmin,dmax
   real(8),allocatable  :: data(:)
   real(8),allocatable  :: x(:),pdf(:)
+  logical              :: print_h=.false.
   logical              :: set_h=.true.
   logical              :: set_min=.true.
   logical              :: set_max=.true.
@@ -18,13 +19,13 @@ program kdensity
   type(d_linked_list)  :: array
   type(node_object)    :: value
   !
-  allocate(help_buffer(15))
-  help_buffer=([&
+  allocate(help_buffer(16))
+  help_buffer=([character(len=256)::&
        'NAME',&
        '  kdensity',&
        '',&
        'SYNOPSIS',&
-       '  kdensity [h] [n] [range]',&
+       '  kdensity [h] [n] [range] [printh]',&
        '',&
        'DESCRIPTION',&
        '  Read an array of x(:) of data and returns its probability distribution',&
@@ -32,11 +33,13 @@ program kdensity
        ' ',&
        'OPTIONS',&
        ' h=[1.06*sigma*y.size**1/5] -- width of the gaussian',&
+       ' printh=[F]                 -- flag to print the value of h,min,max',&
        ' n=[1024]                   -- number of points in the PDF ',&
        ' range=[2*h|y.min:y.max]    -- range of the PDE, default is 2*h. min:max value are allowed',&
        '  '])
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(n,"N",default=1024)
+  call parse_cmd_variable(print_h,"PRINTH","GETH")
   do i=1,command_argument_count()
      nml_var=get_cmd_variable(i)
      select case(nml_var%name)
@@ -97,6 +100,11 @@ program kdensity
   if(set_max)then
      dmax=b
      dmax=dmax+shift*h!+abs(dmax)/shift       
+  endif
+
+  if(print_h)then
+     write(*,"(A,F12.8,1x,F12.8,A,F12.8)")"h,min:max",h,dmin,"  :",dmax
+     stop
   endif
 
   allocate(x(N),pdf(N))

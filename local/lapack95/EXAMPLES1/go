@@ -1,1 +1,0 @@
-make clean; make la_$1_example; la_$1_example

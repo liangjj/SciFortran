@@ -1,22 +1,19 @@
-!  include "list/d_ordered_list.f90"
-program histogram
-  USE FGSL
+program histogram_
   USE D_ORDERED_LIST
   USE COMMON_VARS
+  USE STATISTICS
   implicit none
-  real(fgsl_double)    :: a, b, x 
-  integer              :: n
-  integer(fgsl_int)    :: status
-  type(fgsl_histogram) :: h
-  type(fgsl_file)      :: pfile
+  real(8)             :: a, b, x 
+  integer             :: n
+  type(histogram)     :: h
   !
-  integer              :: i,L
-  real(8)              :: y,dmin,dmax,weigth,bin_value,lower,upper
-  logical              :: set_weigth=.true.
-  real(8),allocatable  :: data(:)
+  integer             :: i,L,unit
+  real(8)             :: y,dmin,dmax,weigth,bin_value,lower,upper
+  logical             :: set_weigth=.true.
+  real(8),allocatable :: data(:)
   !
-  type(d_linked_list)       :: array
-  type(node_object)         :: value
+  type(d_linked_list) :: array
+  type(node_object)   :: value
   !
 
   allocate(help_buffer(13))
@@ -33,10 +30,12 @@ program histogram
        'OPTIONS',&
        '  n|nbin=[50]       -- number of bins',&
        '  weigth=[1/x.size] -- weigth of the bins',&
+       '  unit=[6]          -- write unit',&
        '  '])
 
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(n,"N","NBIN",default=50)
+  call parse_cmd_variable(unit,"unit",default=6)
   do i=1,command_argument_count()
      cmd_var=get_cmd_variable(i)
      if(cmd_var%name=="W")then
@@ -71,21 +70,21 @@ program histogram
      b = dmax
   endif
 
-  pfile  = fgsl_stdout()
-  h      = fgsl_histogram_alloc(n*1_fgsl_size_t)
-  status = fgsl_histogram_set_ranges_uniform(h, a, b)
+  h      = histogram_allocate(n)
+  call histogram_set_range_uniform(h, a, b)
   if(set_weigth)weigth = 1.d0/real(L,8)
   do i=1,L
      x = data(i)
-     status = fgsl_histogram_accumulate(h, x, weigth)
+     call histogram_accumulate(h, x, weigth)
   enddo
 
-  do i=0,N-1
-     status    = fgsl_histogram_get_range(h,i*1_fgsl_size_t,lower,upper)
-     bin_value = fgsl_histogram_get(h,i*1_fgsl_size_t)
-     write(*,"(2F12.7)")lower,bin_value
-     write(*,"(2F12.7)")upper,bin_value
-  enddo
-  !status = fgsl_histogram_fprintf(pfile, h,'%12.7f','%12.7f')
-  call fgsl_histogram_free(h)
-end program histogram
+  ! do i=0,N-1
+  !    status    = fgsl_histogram_get_range(h,i*1_fgsl_size_t,lower,upper)
+  !    bin_value = fgsl_histogram_get(h,i*1_fgsl_size_t)
+  !    write(*,"(2F12.7)")lower,bin_value
+  !    write(*,"(2F12.7)")upper,bin_value
+  ! enddo
+
+  call histogram_print(h,unit)
+
+end program histogram_

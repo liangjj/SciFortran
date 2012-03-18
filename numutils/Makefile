@@ -1,4 +1,3 @@
-FC    = mpif90
 DIREXE= $(SFDIR)/bin
 include $(SFDIR)/etc/lib.mk
 all: print1 deriv kdensity numstat splot func wmatsubara arange linspace fermi spline  histogram print2
@@ -57,7 +56,6 @@ splot:
 
 clean: 
 	@echo "Cleaning:"
-	@rm -f *.mod
-	@rm -f *.o
-	@rm -f *~
+	@rm -fv $(DIREXE)/deriv $(DIREXE)/kdensity $(DIREXE)/numstat $(DIREXE)/splot $(DIREXE)/func $(DIREXE)/wmatsubara $(DIREXE)/arange $(DIREXE)/linspace $(DIREXE)/fermi $(DIREXE)/spline  $(DIREXE)/histogram
+	@rm -f *.mod *.o *~
 #########################################################################

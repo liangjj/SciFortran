@@ -42,6 +42,6 @@ program fermi_
   allocate(data(L))
   call dump_list(array,data)
   do i=1,L
-     write(*,*)fermi(data(i),beta)
+     write(*,*)data(i),fermi(data(i),beta)
   enddo
 end program fermi_

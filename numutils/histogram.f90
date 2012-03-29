@@ -70,21 +70,11 @@ program histogram_
      b = dmax
   endif
 
-  h      = histogram_allocate(n)
+  h = histogram_allocate(n)
   call histogram_set_range_uniform(h, a, b)
   if(set_weigth)weigth = 1.d0/real(L,8)
   do i=1,L
-     x = data(i)
-     call histogram_accumulate(h, x, weigth)
+     call histogram_accumulate(h, data(i), weigth)
   enddo
-
-  ! do i=0,N-1
-  !    status    = fgsl_histogram_get_range(h,i*1_fgsl_size_t,lower,upper)
-  !    bin_value = fgsl_histogram_get(h,i*1_fgsl_size_t)
-  !    write(*,"(2F12.7)")lower,bin_value
-  !    write(*,"(2F12.7)")upper,bin_value
-  ! enddo
-
   call histogram_print(h,unit)
-
 end program histogram_

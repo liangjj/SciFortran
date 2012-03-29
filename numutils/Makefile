@@ -1,6 +1,6 @@
 DIREXE= $(SFDIR)/bin
 include $(SFDIR)/etc/lib.mk
-all: print1 deriv kdensity numstat splot func wmatsubara arange linspace fermi spline  histogram print2
+all: print1 deriv kdensity numstat splot func wmatsubara arange linspace fermi spline random histogram print2
 
 
 print1: 
@@ -8,6 +8,10 @@ print1:
 
 print2:
 	@echo " ...................... done .............................. "
+
+random:
+	@echo "============================$@=============================================="
+	${FC} ${STD} -static ${OBJS} $@.f90 -o $(DIREXE)/$@  ${SFMODS} ${SFLIBS}
 
 kdensity:
 	@echo "============================$@=============================================="

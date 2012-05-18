@@ -108,15 +108,17 @@ program kdensity
   endif
 
   allocate(x(N),pdf(N))
-  x      = linspace(dmin,dmax,N)
+  x      = linspace(dmin,dmax,N,mesh=fmesh)
 
 
   pdf=0.d0
   do i=1,L
      pdf=pdf + gaussian_kernel(x,data(i),h)/real(L,8)
   enddo
+
+  pdf=pdf/sum(pdf)/fmesh
   do i=1,N
-     write(*,"(F18.8,1x,F18.8)")x(i),pdf(i)
+     write(*,*)x(i),pdf(i)
   enddo
 
 contains

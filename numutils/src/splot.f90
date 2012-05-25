@@ -56,8 +56,8 @@ program plot_3d
         if(nml_var%value(1:pos1-1)/="")read(nml_var%value(1:pos1-1),*)ymin
         if(nml_var%value(pos1+1:pos1+pos2-1)/="")read(nml_var%value(pos1+1:pos1+pos2-1),*)ymax
         if(nml_var%value(pos1+pos2+1:)/="")read(nml_var%value(pos1+pos2+1:),*)ysize
-     case default
-        write(*,"(A)")"invalid option: +"//trim(nml_var%name)//"="//trim(nml_var%value)
+     ! case default
+     !    write(*,"(A)")"invalid option: +"//trim(nml_var%name)//"="//trim(nml_var%value)
      end select
   enddo
 

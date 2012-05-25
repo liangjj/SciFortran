@@ -1,8 +1,9 @@
 program linsp
   USE COMMON_VARS
   USE TOOLS
-  integer :: i,L,pos1,pos2
-  real(8) :: wmin,wmax
+  implicit none
+  integer             :: i,L,pos1,pos2
+  real(8)             :: wmin,wmax
   real(8),allocatable :: array(:)
 
   allocate(help_buffer(15))

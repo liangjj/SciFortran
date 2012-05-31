@@ -44,7 +44,7 @@ program pade_
   call parse_cmd_variable(fout,"FOUT",default="pade.out")
   do i=1,command_argument_count()
      nml_var=get_cmd_variable(i)
-     if(nml_var%name == "range")then
+     if(nml_var%name == "RANGE")then        
         pos1=scan(nml_var%value,":")
         pos2=scan(nml_var%value(pos1+1:),":")
         if(nml_var%value(1:pos1-1)/="")read(nml_var%value(1:pos1-1),*)wmin

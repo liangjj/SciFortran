@@ -37,6 +37,7 @@ program pade_
        ' eps  =[0.01]        -- set the small broadening from the real-axis branch cut. ',&
        '  '])
 
+  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(npade,"NPADE",default=20)
   call parse_cmd_variable(eps,"EPS",default=0.01d0)

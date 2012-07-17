@@ -17,6 +17,10 @@ random:
 	@echo "============================$@======================================="
 	${FC} ${STD} -static ${OBJS} $@.f90   ${SFMODS} ${SFLIBS} -o $(DIREXE)/$@
 
+ffcmplx:
+	@echo "============================$@======================================="
+	${FC} ${STD} -static ${OBJS} $@.f90   ${SFMODS} ${SFLIBS} -o $(DIREXE)/$@
+
 pade:
 	@echo "============================$@======================================="
 	${FC} ${STD} -static ${OBJS} $@.f90   ${SFMODS} ${SFLIBS} -o $(DIREXE)/$@
@@ -64,6 +68,10 @@ numstat:
 splot:
 	@echo "============================$@======================================="
 	${FC} ${STD} -static ${OBJS} $@.f90   ${SFMODS} ${SFLIBS} -o $(DIREXE)/$@
+
+vfplot:
+	@echo "============================$@======================================="
+	${FC} ${STD} ${OBJS} $@.f90   ${SFMODS} ${SFLIBS} ${DSL_LIBS} -o $(DIREXE)/$@
 
 
 clean: 

@@ -32,6 +32,8 @@ program spline_
        '  method=[cubic|linear|poly] -- interpolative method',&
        '  order=[3]                  -- order of polynomial interpolation',&
        '  '])
+
+  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(L,"L",default=1024)
   call parse_cmd_variable(order,"ORDER",default=3)

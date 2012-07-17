@@ -54,6 +54,7 @@ program numstat
        ' corr      -- correlation matrix of the ncol samples.',&
        '  '])
 
+  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(ncol,"NCOL","N",default=1)
   do i=1,command_argument_count()
@@ -129,6 +130,7 @@ program numstat
      data_sum(icol)=sum(data(icol,:))
   enddo
 
+
   if(imean)write(*,"(A8,100f24.12)")"mean:",(data_mean(i),i=1,ncol)
   if(isdev)write(*,"(A8,100f24.12)")"std.dev:",(data_sdev(i),i=1,ncol)
   if(ivar)write(*,"(A8,100f24.12)")"var:",(data_var(i),i=1,ncol)
@@ -139,6 +141,7 @@ program numstat
   if(iminloc)write(*,"(A8,100I12)")"minloc:",(data_minloc(i),i=1,ncol)
   if(imaxloc)write(*,"(A8,100I12)")"maxloc:",(data_maxloc(i),i=1,ncol)
   if(isum)write(*,"(A8,100f24.12)")"sum:",(data_sum(i),i=1,ncol)
+
   if(ncol>1)then
      data_covariance = get_covariance(data,data_mean)
      if(icov)then

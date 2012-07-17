@@ -24,7 +24,10 @@ program linsp
        ' range=[a:b:L] -- pass the whole range of the sequence at once',&
        '  '])
 
+  if(command_argument_count()==0)call print_cmd_help(help_buffer)
+
   call parse_cmd_help(help_buffer)
+
   call parse_cmd_variable(L,"L",default=1024)
   call parse_cmd_variable(wmin,"WMIN","A",default=-5.d0)
   call parse_cmd_variable(wmax,"WMAX","B",default=5.d0)

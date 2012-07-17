@@ -30,6 +30,8 @@ program deriv_
        'OPTIONS',&
        '  dh=[0.0] -- infinitesimal increment.',&
        '  '])
+
+  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(dh,"DH",default=0.d0)
   !

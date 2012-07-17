@@ -33,6 +33,7 @@ program histogram_
        '  unit=[6]          -- write unit',&
        '  '])
 
+  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(n,"N","NBIN",default=50)
   call parse_cmd_variable(unit,"unit",default=6)

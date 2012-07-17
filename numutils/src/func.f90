@@ -33,6 +33,7 @@ program func
        '  almost all the implicit functions of F03 are supported',&
        '  '])
   !  
+  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   if(command_argument_count()/=0)then
      do i=1,command_argument_count()
@@ -40,7 +41,7 @@ program func
         read(cmd_var%value,*)buffer
      enddo
   else
-     call abort("usage: cat ...|func f(x) OR func f(x) < ...")
+     call error("usage: cat ...|func f(x) OR func f(x) < ...")
   endif
   !
   array=init_list()

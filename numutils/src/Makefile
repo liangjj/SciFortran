@@ -2,7 +2,7 @@ DIREXE=$(HOME)/lib/numutils/bin
 
 #LOAD SCIFOR LIBRARY:
 #======================================================
-include $(SFDIR)/etc/lib.mk
+include lib.mk
 #======================================================
 
 all: print1 deriv kdensity numstat splot func wmatsubara arange linspace fermi spline random histogram print2
@@ -35,7 +35,7 @@ histogram:
 
 func:
 	@echo "============================$@======================================="
-	${FC} ${STD} ${OBJS} $@.f90   ${SFMODS} ${SFLIBS} -o $(DIREXE)/$@ -L/usr/lib -lmatheval
+	${FC} ${STD} ${OBJS} $@.f90   ${SFMODS} ${SFLIBS} -o $(DIREXE)/$@ -L/opt/local/lib -lmatheval
 
 deriv:
 	@echo "============================$@======================================="

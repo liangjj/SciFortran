@@ -76,6 +76,6 @@ vfplot:
 
 clean: 
 	@echo "Cleaning:"
-	@rm -fv $(DIREXE)/deriv $(DIREXE)/kdensity $(DIREXE)/numstat $(DIREXE)/splot $(DIREXE)/func $(DIREXE)/wmatsubara $(DIREXE)/arange $(DIREXE)/linspace $(DIREXE)/fermi $(DIREXE)/spline  $(DIREXE)/histogram
+	@rm -fv $(DIREXE)/deriv $(DIREXE)/kdensity $(DIREXE)/numstat $(DIREXE)/splot $(DIREXE)/func $(DIREXE)/wmatsubara $(DIREXE)/arange $(DIREXE)/linspace $(DIREXE)/fermi $(DIREXE)/spline  $(DIREXE)/histogram $(DIREXE)/ffcmplx $(DIREXE)/pade $(DIREXE)/random $(DIREXE)/vfplot
 	@rm -f *.mod *.o *~
 #########################################################################

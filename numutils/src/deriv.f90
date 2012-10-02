@@ -8,7 +8,7 @@ program deriv_
   !
   integer              :: i,L
   real(8)              :: x,y,dh
-  real(8),allocatable  :: fi(:),xin(:),deriv(:)
+  real(8),allocatable  :: fi(:),xin(:),dfdx(:)
   logical              :: xyflag
   !
   type(d_linked_list)  :: arraX,arraY
@@ -69,20 +69,20 @@ program deriv_
      call dump_list(arraY,fi)
   endif
 
-  allocate(deriv(L))
-  deriv(1)= (fi(2)-fi(1))/dh
-  deriv(L)= (fi(L)-fi(L-1))/dh
-  do i=2,L-1
-     deriv(i) = (fi(i+1)-fi(i-1))/(2*dh)
-  enddo
-
+  allocate(dfdx(L))
+  ! dfdx(1)= (fi(2)-fi(1))/dh
+  ! dfdx(L)= (fi(L)-fi(L-1))/dh
+  ! do i=2,L-1
+  !    dfdx(i) = (fi(i+1)-fi(i-1))/(2*dh)
+  ! enddo
+  dfdx = deriv(fi,dh)
   if(xyflag)then
      do i=1,L
-        write(*,*)xin(i),deriv(i)
+        write(*,*)xin(i),dfdx(i)
      enddo
   else
      do i=1,L
-        write(*,*)deriv(i)
+        write(*,*)dfdx(i)
      enddo
   endif
   !

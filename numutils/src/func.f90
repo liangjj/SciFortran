@@ -6,7 +6,7 @@ program func
   implicit none
   !
   integer              :: i,L
-  real(8)              :: xtmp
+  real(8)              :: x
   real(8),allocatable  :: xdata(:)
   type(d_linked_list)  :: array
   integer(8)                   :: evaluator_create_
@@ -47,8 +47,8 @@ program func
   array=init_list()
   i=0
   do 
-     read(5,*,end=1)xtmp
-     call add_element(array,xtmp)
+     read(5,*,end=1)x
+     call add_element(array,x)
      i=i+1
   end do
 1 continue
@@ -56,7 +56,6 @@ program func
   !
   allocate(xdata(L))
   call dump_list(array,xdata)
-
   f = evaluator_create_(buffer);
   do i=1,L
      write(*,*)xdata(i),evaluator_evaluate_x_(f, xdata(i))

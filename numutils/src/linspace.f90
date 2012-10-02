@@ -39,7 +39,6 @@ program linsp
         if(nml_var%value(1:pos1-1)/="")read(nml_var%value(1:pos1-1),*)wmin
         if(nml_var%value(pos1+1:pos1+pos2-1)/="")read(nml_var%value(pos1+1:pos1+pos2-1),*)wmax
         if(nml_var%value(pos1+pos2+1:)/="")read(nml_var%value(pos1+pos2+1:),*)L
-
      endif
   enddo
 

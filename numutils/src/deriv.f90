@@ -2,6 +2,7 @@
 program deriv_
   USE D_UNORDERED_LIST
   USE COMMON_VARS
+  USE PARSE_CMD
   USE TOOLS
   USE SPLINE
   implicit none
@@ -13,8 +14,8 @@ program deriv_
   !
   type(d_linked_list)  :: arraX,arraY
   !  
+  character(len=128)  :: help_buffer(14)
 
-  allocate(help_buffer(14))
   help_buffer=([&
        'NAME',&
        '  deriv',&

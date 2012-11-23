@@ -2,21 +2,22 @@
 program plot_3d
   USE D_UNORDERED_LIST
   USE COMMON_VARS
+  USE PARSE_CMD
   USE SLPLOT
   USE TOOLS
   implicit none
-  integer             :: i,L,ix,iy,pos1,pos2,icol
-  character(len=128)  :: file
+  integer                         :: i,L,ix,iy,pos1,pos2,icol
+  character(len=128)              :: file
   type(d_linked_list),allocatable :: array(:)
   real(8),allocatable             :: data(:,:),y(:)
-  real(8),allocatable :: xgrid(:),ygrid(:),zgrid(:,:)
-  complex(8),allocatable :: czgrid(:,:)
-  real(8)             :: xmin,xmax
-  real(8)             :: ymin,ymax
-  integer             :: xsize,ysize
-
-  logical             :: wl=.false.,pgrid
-  integer             :: nl,ncol
+  real(8),allocatable             :: xgrid(:),ygrid(:),zgrid(:,:)
+  complex(8),allocatable          :: czgrid(:,:)
+  real(8)                         :: xmin,xmax
+  real(8)                         :: ymin,ymax
+  integer                         :: xsize,ysize
+  character(len=256),allocatable  :: help_buffer(:)
+  logical                         :: wl=.false.,pgrid
+  integer                         :: nl,ncol
   xmin=1.d0 ; xmax=10.d0 ; xsize=10
   ymin=1.d0 ; ymax=10.d0 ; ysize=10
   allocate(help_buffer(19))

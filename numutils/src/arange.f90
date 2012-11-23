@@ -1,8 +1,10 @@
 program arange_
   USE COMMON_VARS
+  USE PARSE_CMD
   USE TOOLS
   integer :: i,L
   real(8),allocatable :: wm(:)
+  character(len=256),allocatable :: help_buffer(:)
   allocate(help_buffer(12))
   help_buffer=([&
        'NAME',&

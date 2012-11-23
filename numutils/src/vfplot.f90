@@ -16,6 +16,7 @@ program vfplot
   type(d_linked_list)      :: arrayVx,arrayVy
   logical                  :: wl=.false.,pgrid
   integer                  :: nl
+  character(len=256),allocatable :: help_buffer(:)
   xmin=1.d0 ; xmax=10.d0 ; xsize=10
   ymin=1.d0 ; ymax=10.d0 ; ysize=10
   allocate(help_buffer(17))

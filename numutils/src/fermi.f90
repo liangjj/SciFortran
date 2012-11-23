@@ -2,16 +2,17 @@
 program fermi_
   USE D_UNORDERED_LIST
   USE COMMON_VARS
+  USE PARSE_CMD
   USE TOOLS
   implicit none
   !
   integer              :: i,L
-  real(8)              :: y
+  real(8)              :: y,beta
   real(8),allocatable  :: data(:)
   !
   type(d_linked_list)  :: array
   !
-
+  character(len=256),allocatable :: help_buffer(:)
   allocate(help_buffer(13))
   help_buffer=([&
        'NAME',&

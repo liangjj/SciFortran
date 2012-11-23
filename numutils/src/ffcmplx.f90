@@ -10,7 +10,7 @@ program ffcmplx
   complex(8),allocatable :: Gread(:,:)
   logical                :: ex
   character(len=64)      :: fin,fout
-
+  character(len=256),allocatable :: help_buffer(:)
   allocate(help_buffer(16))
   help_buffer=([&
        'NAME',&

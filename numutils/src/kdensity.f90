@@ -2,12 +2,13 @@ program kdensity
   USE STATISTICS
   USE D_ORDERED_LIST
   USE COMMON_VARS
+  USE PARSE_CMD
   USE TOOLS
   implicit none
   !
   integer              :: i,L,N,pos,pos1
   real(8)              :: h,shift=2.d0
-  real(8)              :: y,a,b,dmin,dmax
+  real(8)              :: y,a,b,dmin,dmax,fmesh
   real(8),allocatable  :: data(:)
   real(8),allocatable  :: x(:),pdf(:)
   logical              :: print_h=.false.
@@ -19,6 +20,7 @@ program kdensity
   type(d_linked_list)  :: array
   type(node_object)    :: value
   !
+  character(len=256),allocatable :: help_buffer(:)
   allocate(help_buffer(16))
   help_buffer=([character(len=256)::&
        'NAME',&

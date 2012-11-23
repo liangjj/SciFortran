@@ -1,5 +1,6 @@
 program histogram_
   USE D_ORDERED_LIST
+  USE PARSE_CMD
   USE COMMON_VARS
   USE STATISTICS
   implicit none
@@ -15,7 +16,7 @@ program histogram_
   type(d_linked_list) :: array
   type(node_object)   :: value
   !
-
+  character(len=256),allocatable :: help_buffer(:)
   allocate(help_buffer(13))
   help_buffer=([&
        'NAME',&

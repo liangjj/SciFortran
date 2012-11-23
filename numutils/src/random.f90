@@ -1,5 +1,6 @@
 program random_
   USE COMMON_VARS
+  USE PARSE_CMD
   USE RANDOM
   implicit none
   integer             :: i,N,pos1,pos2
@@ -8,7 +9,7 @@ program random_
   integer,allocatable    :: ir(:)
   real(8),allocatable    :: rr(:)
   complex(8),allocatable :: cr(:)
-
+  character(len=256),allocatable :: help_buffer(:)
   allocate(help_buffer(15))
   help_buffer=([character(len=256)::&
        'NAME',&

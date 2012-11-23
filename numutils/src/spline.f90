@@ -2,6 +2,7 @@
 program spline_
   USE D_UNORDERED_LIST
   USE COMMON_VARS
+  USE PARSE_CMD
   USE TOOLS
   USE SPLINE
   implicit none
@@ -13,7 +14,7 @@ program spline_
   !
   type(d_linked_list)  :: arrayX,array
   !
-
+  character(len=256),allocatable :: help_buffer(:)
   allocate(help_buffer(16))
   help_buffer=([&
        'NAME',&

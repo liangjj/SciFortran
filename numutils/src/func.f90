@@ -2,7 +2,8 @@
 program func
   USE D_UNORDERED_LIST
   USE COMMON_VARS
-  USE STRING_FUNX
+  USE PARSE_CMD
+  !USE STRING_FUNX
   implicit none
   !
   integer              :: i,L
@@ -14,6 +15,7 @@ program func
   integer,parameter            :: buffer_size=256
   character(len = buffer_size) :: buffer
   integer(8)                   :: f
+  character(len=256),allocatable :: help_buffer(:)
   buffer="x^2"
   allocate(help_buffer(15))
   help_buffer=([&

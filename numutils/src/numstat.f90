@@ -1,6 +1,7 @@
 program numstat
   USE D_UNORDERED_LIST
   USE COMMON_VARS
+  USE PARSE_CMD
   USE STATISTICS
   implicit none
   integer                         :: i,j,L,icol
@@ -26,9 +27,10 @@ program numstat
   integer,allocatable             :: data_minloc(:),data_maxloc(:)
   real(8),allocatable             :: data_sum(:)
   real(8),allocatable             :: data_covariance(:,:)
-  !add more here:
+  character(len=256),allocatable :: help_buffer(:)
 
-  allocate(help_buffer(21))
+  !add more here:
+  allocate(help_buffer(23))
   help_buffer=([&
        'NAME',&
        '  numstat',&

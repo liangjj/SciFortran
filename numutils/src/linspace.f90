@@ -1,11 +1,12 @@
 program linsp
   USE COMMON_VARS
+  USE PARSE_CMD
   USE TOOLS
   implicit none
   integer             :: i,L,pos1,pos2
   real(8)             :: wmin,wmax
   real(8),allocatable :: array(:)
-
+  character(len=256),allocatable :: help_buffer(:)
   allocate(help_buffer(15))
   help_buffer=([&
        'NAME',&

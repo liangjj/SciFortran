@@ -1,9 +1,11 @@
 program linsp
   USE COMMON_VARS
+  USE PARSE_CMD
   USE TOOLS
-  integer             :: i,L,rep
-  real(8),allocatable :: wm(:)
-
+  integer                        :: i,L,rep
+  real(8)                        :: beta
+  real(8),allocatable            :: wm(:)
+  character(len=256),allocatable :: help_buffer(:)
   allocate(help_buffer(14))
   help_buffer=([&
        'NAME',&

@@ -2,13 +2,14 @@ program pade_
   USE COMMON_VARS
   USE TOOLS
   USE IOTOOLS
+  USE PARSE_CMD
   USE PADE
   implicit none
   integer                :: i,j,N,npade,pos1,pos2
   character(len=64)      :: fin,fout
 
   !Matsubara:
-  real(8)                :: regf,imgf
+  real(8)                :: regf,imgf,eps
   real(8),allocatable    :: wm(:)
   complex(8),allocatable :: gm(:)
 
@@ -16,7 +17,7 @@ program pade_
   integer                :: Nw=1024
   real(8)                :: wmin=-10.d0,wmax=10.d0
   complex(8),allocatable :: zr(:),gr(:)
-
+  character(len=256),allocatable :: help_buffer(:)
 
   allocate(help_buffer(16))
   help_buffer=([&

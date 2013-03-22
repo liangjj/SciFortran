@@ -142,15 +142,15 @@ program plot_3d
 
   if(wl)then
      if(ncol==1)then
-        call splot(trim(adjustl(trim(file))),xgrid,ygrid,zgrid,.true.,nlines=nl)
+        call splot3d(trim(adjustl(trim(file))),xgrid,ygrid,zgrid,.true.,nlines=nl)
      else
-        call splot(trim(adjustl(trim(file))),xgrid,ygrid,czgrid,.true.,nlines=nl)
+        call splot3d(trim(adjustl(trim(file))),xgrid,ygrid,czgrid,.true.,nlines=nl)
      endif
   else
      if(ncol==1)then
-        call splot(trim(adjustl(trim(file))),xgrid,ygrid,zgrid)
+        call splot3d(trim(adjustl(trim(file))),xgrid,ygrid,zgrid)
      else
-        call splot(trim(adjustl(trim(file))),xgrid,ygrid,czgrid)
+        call splot3d(trim(adjustl(trim(file))),xgrid,ygrid,czgrid)
      endif
   endif
 

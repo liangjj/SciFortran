@@ -4,6 +4,7 @@ program fermi_
   USE COMMON_VARS
   USE PARSE_CMD
   USE TOOLS
+  USE FUNCTIONS
   implicit none
   !
   integer              :: i,L

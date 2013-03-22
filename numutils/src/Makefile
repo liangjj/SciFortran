@@ -1,8 +1,8 @@
-DIREXE=$(HOME)/lib/bin
+DIREXE=../bin
 
 #LOAD SCIFOR LIBRARY:
 #======================================================
-include lib.mk
+include sfmake.inc
 #======================================================
 
 all: print1 deriv kdensity numstat splot func wmatsubara fftgf arange pade linspace fermi spline random histogram print2

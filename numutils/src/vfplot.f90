@@ -39,7 +39,6 @@ program vfplot
        '  file=[new.plot]   -- file name of the plot. gnuplot script in plot_*file',&
        '  grid=[F]          -- if true write a file with continuous grid and data: X,Y,Z(X,Y)',&
        '  '])
-  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(file,"FILE",default="new.plot")
   call parse_cmd_variable(pgrid,"GRID",default=.false.)

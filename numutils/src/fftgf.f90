@@ -48,7 +48,6 @@ program fftgf_
        '  fout=[stdout] -- output file name, default is standard output',&
        '  '])
 
-  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(type,"TYPE",default="fw")
   call parse_cmd_variable(fin,"FIN",default="stdin")

@@ -39,7 +39,6 @@ program kdensity
        ' n=[1024]                   -- number of points in the PDF ',&
        ' range=[2*h|y.min:y.max]    -- range of the PDE, default is 2*h. min:max value are allowed',&
        '  '])
-  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(n,"N",default=1024)
   call parse_cmd_variable(print_h,"PRINTH","GETH")

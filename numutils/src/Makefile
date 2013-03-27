@@ -1,4 +1,4 @@
-DIREXE=../bin
+DIREXE=$(HOME)/.bin/
 
 #LOAD SCIFOR LIBRARY:
 #======================================================

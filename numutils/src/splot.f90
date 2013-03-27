@@ -1,4 +1,3 @@
-!  include "list/d_unordered_list.f90"
 program plot_3d
   USE D_UNORDERED_LIST
   USE COMMON_VARS
@@ -42,7 +41,6 @@ program plot_3d
        '  nl=[0]            -- if /= 0 produces a plot with lines along one direction every nl lines',&
        '  grid=[F]          -- if true write a file with continuous grid and data: X,Y,Z(X,Y)',&
        '  '])
-  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(ncol,"NCOL","N",default=1)
   call parse_cmd_variable(nl,"NL",default=0)

@@ -1,9 +1,7 @@
-!  include "list/d_unordered_list.f90"
 program func
   USE D_UNORDERED_LIST
   USE COMMON_VARS
   USE PARSE_CMD
-  !USE STRING_FUNX
   implicit none
   !
   integer              :: i,L
@@ -35,7 +33,6 @@ program func
        '  almost all the implicit functions of F03 are supported',&
        '  '])
   !  
-  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   if(command_argument_count()/=0)then
      do i=1,command_argument_count()

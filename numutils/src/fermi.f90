@@ -1,4 +1,3 @@
-!  include "list/d_unordered_list.f90"
 program fermi_
   USE D_UNORDERED_LIST
   USE COMMON_VARS
@@ -30,7 +29,6 @@ program fermi_
        '  beta=[100.0] -- inverse temperature',&
        '  '])
 
-  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(beta,"BETA",default=100.d0)
   array = init_list()

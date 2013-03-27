@@ -22,7 +22,6 @@ program linsp
        '  beta=[100] -- inverse temperature',&
        '  rep=[1]    -- number of repetition of the printed array',&
        '  '])
-  if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(beta,"BETA",default=100.d0)
   call parse_cmd_variable(L,"L",default=1024)

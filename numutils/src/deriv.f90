@@ -1,4 +1,3 @@
-!include "list/d_unordered_list.f90"
 program deriv_
   USE D_UNORDERED_LIST
   USE COMMON_VARS
@@ -32,7 +31,6 @@ program deriv_
        '  dh=[0.0] -- infinitesimal increment.',&
        '  '])
 
-  !if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(dh,"DH",default=0.d0)
   !

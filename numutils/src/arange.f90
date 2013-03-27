@@ -19,7 +19,7 @@ program arange_
        'OPTIONS',&
        '  L=[1024] -- number of elements',&
        '  '])
-  if(command_argument_count()==0)call print_cmd_help(help_buffer)
+
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(L,"L",default=1024)
   allocate(wm(L))

@@ -28,7 +28,6 @@ program random_
        '  n=[1]         -- Number of random numbers',&
        '  type=[R]      -- Number of random numbers',&
        '  '])
-if(command_argument_count()==0)call print_cmd_help(help_buffer)
   call parse_cmd_help(help_buffer)
   call parse_cmd_variable(N,"N",default=1)
   call parse_cmd_variable(xmin,"MIN",default=0.d0)

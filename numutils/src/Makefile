@@ -1,11 +1,11 @@
-DIREXE=$(HOME)/.bin/
+DIREXE=$(HOME)/.bin
 
 #LOAD SCIFOR LIBRARY:
 #======================================================
 include sfmake.inc
 #======================================================
 
-all: print1 deriv kdensity numstat splot func wmatsubara fftgf arange pade linspace fermi spline random histogram print2
+all: print1 deriv kdensity numstat splot func wmatsubara fftgf arange pade logspace linspace fermi spline random histogram print2
 
 print1: 
 	@echo " ..................... compile: optimized .......................... "
@@ -58,6 +58,10 @@ arange:
 	${FC} ${STD} -static  $@.f90   ${SFMODS} ${SFLIBS} -o $(DIREXE)/$@
 
 linspace:
+	@echo "============================$@======================================="
+	${FC} ${STD} -static  $@.f90   ${SFMODS} ${SFLIBS} -o $(DIREXE)/$@
+
+logspace:
 	@echo "============================$@======================================="
 	${FC} ${STD} -static  $@.f90   ${SFMODS} ${SFLIBS} -o $(DIREXE)/$@
 
